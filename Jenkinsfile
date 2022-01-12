@@ -1,4 +1,7 @@
-stage('DeployToStaging') {
+pipeline {
+    agent any
+    stages {
+        stage('DeployToStaging') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
@@ -15,7 +18,7 @@ stage('DeployToStaging') {
                                     sshTransfer(
                                         sourceFiles: '/root/scripts/onboard_agent.sh',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo sh /tmp/scripts/onboard_agent.sh  > ./onboard.txt && sudo su omsagent -c 'python2 /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py' > ./checkconfig.txt'
+                                        execCommand: 'sudo sh /tmp/scripts/onboard_agent.sh'
                                     )
                                 ]
                             )
