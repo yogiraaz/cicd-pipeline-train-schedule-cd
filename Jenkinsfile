@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('DeployToStaging') {
-           when {
+            when {
                 branch 'master'
             }
             steps {
@@ -20,8 +20,9 @@ pipeline {
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: '/root/scripts/onboard_agent.sh',
+                                        
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo sh /tmp/scripts/onboard_agent.sh'
+                                        execCommand: 'sudo sh /tmp/onboard_agent.sh'
                                     )
                                 ]
                             )
