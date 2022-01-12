@@ -18,7 +18,7 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: '/root/scripts/onboard_agent.sh',
                                         remoteDirectory: '/home/deploy/',
-                                        sshPut from: '/root/scripts/onboard_agent.sh', into: '/home/deploy/',
+                                        sshPut remote: remote, from: '/root/scripts/onboard_agent.sh', into: '/home/deploy/',
                                         execCommand: 'sudo sh /home/deploy/onboard_agent.sh'
                                     )
                                 ]
